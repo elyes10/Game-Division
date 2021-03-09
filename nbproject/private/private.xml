@@ -9,8 +9,14 @@
             <file>file:/D:/GameDivision/src/entities/connecttoDb.java</file>
             <file>file:/D:/GameDivision/src/Services/services_cart.java</file>
             <file>file:/D:/GameDivision/src/gamedivision/GameDivision.java</file>
+<<<<<<< Updated upstream
             <file>file:/D:/GameDivision/src/gamedivision/FXMLDocumentController.java</file>
             <file>file:/D:/GameDivision/src/Services/services_orders.java</file>
+=======
+            <file>file:/D:/GameDivision/src/entities/product.java</file>
+            <file>file:/D:/GameDivision/src/Services/services_orders.java</file>
+            <file>file:/D:/GameDivision/src/gamedivision/FXMLDocumentController.java</file>
+>>>>>>> Stashed changes
             <file>file:/D:/GameDivision/src/entities/History_orders.java</file>
         </group>
     </open-files>

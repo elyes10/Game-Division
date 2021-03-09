@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -77,3 +78,162 @@ public class services_cart {
 
     }
 }
+=======
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Services;
+
+import entities.connecttoDb;
+import entities.product;
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+
+import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javax.swing.ImageIcon;
+
+/**
+ *
+ * @author HP OMEN
+ */
+public class services_cart {
+
+    Connection c = connecttoDb.getInstance().getCnx();
+
+    public void addProduitPanier(int product_id, int quantite, int user_id) {
+        Statement st;
+
+        try {
+            st = c.createStatement();
+            String rec2 = "SELECT product_id FROM cart WHERE product_id = '" + product_id + "' AND + user_id = '" + user_id + "'";
+            
+            ResultSet rs = st.executeQuery(rec2);
+            if (rs.next()) {
+                System.err.println("product exists in cart");
+            } else {
+                try {
+                    st = c.createStatement();
+                    String rec = " INSERT INTO `cart`(`product_id`, `quantite`, `user_id`) VALUES ('" + product_id + "','" + quantite + "','" + user_id + "')";
+                    st.executeUpdate(rec);
+                    System.err.println("add successful");
+                } catch (SQLException ex) {
+                    Logger.getLogger(services_cart.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(services_cart.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void delete_product_from_panier(int product_id) {
+        PreparedStatement pt;
+        try {
+            pt = c.prepareStatement("delete from cart where product_id=? ");
+            pt.setInt(1, product_id);
+            pt.executeUpdate();
+            System.out.println("product deleted from cart");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(services_cart.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void vider_panier(int user_id) {
+        PreparedStatement pt;
+        try {
+            pt = c.prepareStatement("delete from cart where user_id=? ");
+            pt.setInt(1, user_id);
+            pt.executeUpdate();
+            System.out.println("cart vider");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(services_cart.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void update_panier_product_quantity(int user_id, int product_id, int quantity) {
+        PreparedStatement pt;
+        try {
+            pt = c.prepareStatement("UPDATE cart SET quantite =?  WHERE user_id =? AND product_id =? ");
+            pt.setInt(1, quantity);
+            pt.setInt(2, user_id);
+            pt.setInt(3, product_id);
+            pt.executeUpdate();
+            System.out.println("quantite updated");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(services_cart.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ObservableList<product> getInitialTableData() {
+        String sql = "SELECT * FROM products";
+        ObservableList<product> data = FXCollections.observableArrayList();
+        try {
+            PreparedStatement s = connecttoDb.getInstance().getCnx().prepareStatement(sql);
+            s.executeQuery(sql);
+            ResultSet res = s.executeQuery(sql);
+            while (res.next()) {
+                File file = new File(res.getString(7));
+                Image imgg = new Image(file.toURI().toString());
+                ImageView imgView = new ImageView(imgg);
+                imgView.setFitWidth(200);
+                imgView.setFitHeight(200);
+                product p = new product(res.getInt(1), res.getString(2), res.getInt(3), res.getDouble(4), res.getString(5), res.getInt(6), res.getString(7));
+                p.setImagev(imgView);
+                data.add(p);
+            }
+            System.out.println(data);
+        } catch (SQLException ex) {
+            System.out.println("Error in Building Data");
+        }
+        return data;
+    }
+    
+      public ObservableList<product> getInitialTableData_Cart(int user_id) {
+        String sql = "SELECT products.product_name, products.img, products.price, cart.quantite FROM products INNER JOIN cart ON products.product_id=cart.product_id WHERE cart.user_id = '" + user_id + "'";
+        ObservableList<product> data = FXCollections.observableArrayList();
+        try {
+            PreparedStatement s = connecttoDb.getInstance().getCnx().prepareStatement(sql);
+            s.executeQuery(sql);
+            ResultSet res = s.executeQuery(sql);
+            while (res.next()) {
+                File file = new File(res.getString(2));
+                Image imgg = new Image(file.toURI().toString());
+                ImageView imgView = new ImageView(imgg);
+                imgView.setFitWidth(200);
+                imgView.setFitHeight(200);
+                product p = new product(1, res.getString(1), 1, res.getDouble(3), "categorie", res.getInt(4), res.getString(2));
+                p.setImagev(imgView);
+                data.add(p);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error in Building Data"+ex);
+        }
+        return data;
+    }
+}
+>>>>>>> Stashed changes
