@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,7 +10,7 @@ import javafx.scene.image.ImageView;
 
 /**
  *
- * @author HP OMEN
+ * @author LENOVO
  */
 public class product {
 
@@ -21,68 +20,6 @@ public class product {
     private double Price;
     private String Category;
     private int Quantity;
-<<<<<<< Updated upstream
-    public product(String n,double p,int t,String c,int q)
-    {
-        
-        this.Product_name=n;
-        this.Team_id=t;
-        this.price=p;
-        this.Category=c;
-        this.Quantity=q;
-    }
-
-   
-    public int getid()
-    {
-        return this.Product_id;
-    }
-    public String getname()
-    {
-        return this.Product_name;
-    }
-    public int getteamid()
-    {
-        return this.Team_id;
-    }
-    public double get$()
-    {
-        return this.price;
-    }
-    public String getcatg()
-    {
-        return this.Category;
-    }
-    public int getquantity()
-    {
-        return this.Quantity;
-    }
-   
-    public void setname(String n)
-    {
-        this.Product_name=n;
-    }
-    public void setteamid(int tm)
-    {
-        this.Team_id=tm;
-    }
-    public void set$(double $)
-    {
-        this.price=$;
-    }
-    public void setcatg(String c)
-    {
-        this.Category=c;
-    }
-    public void setquantity(int q)
-    {
-         this.Quantity=q;
-    }
-    @Override
-    public String toString()
-    {
-        return this.Product_name+'-'+this.Quantity+'-'+this.Team_id+'-'+this.price+'-'+this.Category+'\n';
-=======
     private String img;
     private ImageView imagev;
 
@@ -145,7 +82,6 @@ public class product {
      */
     public void setTeam_id(int Team_id) {
         this.Team_id = Team_id;
->>>>>>> Stashed changes
     }
 
     /**
