@@ -1,0 +1,18 @@
+.btn:hover{
+    -fx-cursor:hand ;
+}
+
+.showUsers .column-header-background{
+        -fx-background-color: #651FFF;
+        -fx-background-radius:14;
+        -fx-background-insets: 0 0 10 0;
+       
+        
+        
+    }
+.showUsers .column-header, .showUsers .filler{
+        -fx-size:50px;
+        -fx-border-width: 0 0 10 0;
+        -fx-background-color:transparent;
+        
+    }

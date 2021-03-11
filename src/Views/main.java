@@ -30,7 +30,7 @@ public class main extends Application {
     @Override
     public void start(Stage stage) {
   try{  
-        Parent root = FXMLLoader.load(getClass().getResource("AddUser.FXML"));
+        Parent root = FXMLLoader.load(getClass().getResource("LoginUser.FXML"));
         JFXDecorator decorator=new JFXDecorator(stage, root, false, false, true);
         decorator.setCustomMaximize(false);
         decorator.setBorder(Border.EMPTY);         
@@ -41,7 +41,7 @@ public class main extends Application {
       
     
 
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.DECORATED);
         stage.show();   
         
         

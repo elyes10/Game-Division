@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 
 /**
  *
@@ -54,18 +56,19 @@ public class servicesUser {
     }
     
     
-    public List<User> getAll() throws SQLException{
+    public List<User> getAll(){
     List<User> us = new ArrayList<>();
         PreparedStatement p;
+        try {
         p = c.prepareStatement("select * from users");
         ResultSet rs = p.executeQuery();
         while (rs.next()){
          User u = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8));
          us.add(u);
             
-        }
-               
-        
+        }    } catch (SQLException ex) {
+            Logger.getLogger(servicesUser.class.getName()).log(Level.SEVERE, null, ex);
+        }     
     return us;
     }
       public void showUser() {
@@ -97,6 +100,26 @@ public void updateUser(int id, User u) {
             pt.setString(7,u.getUser_gender());
             
             pt.setInt(8, id);
+            pt.executeUpdate();
+            System.err.println("update successful");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(servicesUser.class.getName()).log(Level.SEVERE, null, ex);
+        }      
+        
+        
+    }
+
+public void updateUser1(int id, User u) {
+        try {
+            PreparedStatement pt = c.prepareStatement("UPDATE users SET User_name=?,User_lastname=?,User_Email=?,User_phone=?,User_photo=? where User_id = ?");
+
+            pt.setString(1, u.getUser_name());
+            pt.setString(2, u.getUser_lastname());
+            pt.setString(3,u.getUser_Email());
+            pt.setInt(4, u.getUser_phone());
+            pt.setString(5, u.getUser_photo());
+            pt.setInt(6, id);
             pt.executeUpdate();
             System.err.println("update successful");
 
