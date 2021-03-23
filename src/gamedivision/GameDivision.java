@@ -10,15 +10,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import entities.cart;
 import Services.services_cart;
 import Services.services_orders;
-import java.util.Date;
-import java.util.UUID;
 import Services.services_history_orders;
-import entities.product;
-import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
+
 
 /**
  *
@@ -28,12 +23,15 @@ public class GameDivision extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-
+      Parent root = FXMLLoader.load(getClass().getResource("/gui/Shop.fxml"));
+      //   Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Game Division");
         stage.setScene(scene);
         stage.show();
+        
+        
+       
         
     }
 
@@ -58,6 +56,8 @@ public class GameDivision extends Application {
         //ho.afficher_history_of_user_orders(logged_user_id);
      double a =0;  
    a=sc.total_price_calcul(logged_user_id);
+   
+   
     }
 
 }

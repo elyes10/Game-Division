@@ -3,103 +3,96 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gamedivision;
+package gui;
 
-import Services.services_cart;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import entities.product;
-import javafx.collections.ObservableList;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.util.Callback;
 import Services.services_cart;
 import Services.services_history_orders;
 import Services.services_orders;
 import entities.orders;
+import entities.product;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import java.io.IOException;
 
-import java.util.Date;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import gamedivision.FXMLDocumentController;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.stage.StageStyle;
+import org.controlsfx.control.Notifications;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.Window;
-import org.controlsfx.control.Notifications;
-
+import javafx.util.Callback;
 /**
  * FXML Controller class
  *
  * @author HP OMEN
  */
-public class FXMLDocumentController implements Initializable {
+public class CartController implements Initializable {
 
     @FXML
-    private TableView<product> product_table;
+    private Button menu_button;
     @FXML
-    private TableColumn<product, String> product_name;
+    private Button cbut;
     @FXML
-    private TableColumn<product, ImageView> product_image;
+    private Button exbut;
     @FXML
-    private TableColumn<product, Double> product_price;
-    services_history_orders ho = new services_history_orders();
-    services_cart s = new services_cart();
-    ObservableList<product> storelist = FXCollections.observableArrayList();
-
-    ObservableList<product> cartlist = FXCollections.observableArrayList();
-
-    ObservableList<orders> orders_historylist = FXCollections.observableArrayList();
-
-    int index = -1;
-    Connection conn = null;
-    ResultSet rs = null;
-    PreparedStatement pst = null;
-
+    private AnchorPane mainpane;
     @FXML
-    private VBox vboxstore;
+    private AnchorPane pane_slide;
     @FXML
-    private Button Clear_Cart;
+    private Button hbut;
     @FXML
-    private Tab Store;
+    private Button gbut;
     @FXML
-    private TableView<product> cart_table;
+    private Button tbut;
+    @FXML
+    private Button teambut;
+    @FXML
+    private Button stbut;
+    @FXML
+    private VBox vb;
     @FXML
     private AnchorPane tab_cart;
+    @FXML
+     private TableView<product> cart_table;
     @FXML
     private TableColumn<product, String> product_name_cart;
     @FXML
@@ -109,52 +102,79 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<product, Double> price_cart;
     @FXML
+    private Button Clear_Cart;
+    @FXML
     private Button orders_history_button;
     @FXML
     private Button checkout_butt;
     @FXML
-    private Label tot_price;   
-    @FXML
-    private Button testbt;
+    private Label tot_price;
+    
+    ObservableList<orders> orders_historylist = FXCollections.observableArrayList();
+    services_history_orders ho = new services_history_orders();
+    services_cart s = new services_cart();
+   static ObservableList<product> cartlist = FXCollections.observableArrayList();
+    Connection conn = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    int activ_user_id = 10; 
+    
+   
+   
+    
+
     /**
      * Initializes the controller class.
-     *
-     * @param url
-     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       testbt.setOnAction((ActionEvent event) -> { try {
-            Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+      
+       ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+Runnable task = () -> {
+    cart_table.refresh();
+};
+executor.scheduleWithFixedDelay(task, 0, 2, TimeUnit.SECONDS);
+
+          stbut.setOnAction((ActionEvent event) -> { try {
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/Shop.fxml"));
                  Scene scene = new Scene(root);
                  
         Stage st=new Stage();
         st.setScene(scene);
         st.initStyle(StageStyle.UNDECORATED);
-
         st.show();
             } catch (IOException ex) {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
+          
+          
  });
-        product_name.setCellValueFactory(new PropertyValueFactory<>("Product_name"));
-        product_image.setCellValueFactory(new PropertyValueFactory<>("imagev"));
-        product_price.setCellValueFactory(new PropertyValueFactory<>("Price"));
+          
+           ImageView btnimg = new ImageView("ex.png");
+                        btnimg.setFitWidth(25);
+                        btnimg.setFitHeight(25);
+                        exbut.setGraphic(btnimg);
+        exbut.setOnAction((ActionEvent event) -> {
+           System.exit(0);
+          
+        });
+    
+     ImageView btnimg1 = new ImageView("bars1.png");
+                        btnimg1.setFitWidth(25);
+                        btnimg1.setFitHeight(25);
+                        menu_button.setGraphic(btnimg1);
+   
+    //cart table affich
+   
         product_name_cart.setCellValueFactory(new PropertyValueFactory<>("Product_name"));
         product_image_cart.setCellValueFactory(new PropertyValueFactory<>("imagev"));
         price_cart.setCellValueFactory(new PropertyValueFactory<>("Price"));
         quantity_cart.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
-          services_orders so=new services_orders();   
-        services_cart sc = new services_cart();
-        int activ_user_id = 10;  
+       services_cart sc = new services_cart();
         Double total_price=sc.total_price_calcul(activ_user_id);
         tot_price.setText(String.valueOf(total_price));
-        storelist = sc.getInitialTableData(); //get liste produit
-        product_table.setItems(storelist); // table store affichage
-        addButtonToTableStore(activ_user_id);           //button addtocart
-cart_table.setItems(cartlist);
-        cartlist = sc.getInitialTableData_Cart(activ_user_id); //get liste cart of user id 10 replace with activ user
-        
+       cartlist = sc.getInitialTableData_Cart(activ_user_id); //get liste cart of user id 10 replace with activ user
+        cart_table.setItems(cartlist);
         addButtonToTableCartQuantityMinus(activ_user_id);
         addButtonToTableCartQuantity(activ_user_id);
         addButtonToTableCartDelete(activ_user_id);
@@ -193,62 +213,14 @@ cart_table.setItems(cartlist);
 
         orders_historylist = ho.getInitialTableData_Orders_History(activ_user_id);
 
+    
+    
+    
+    
     }
 
-    private void addButtonToTableStore(int activ_user_id) {
-        TableColumn<product, Void> colBtn = new TableColumn("Add To Cart");
-        services_cart sc = new services_cart();
-        Callback<TableColumn<product, Void>, TableCell<product, Void>> cellFactory = new Callback<TableColumn<product, Void>, TableCell<product, Void>>() {
-            @Override
-            public TableCell<product, Void> call(final TableColumn<product, Void> param) {
-                final TableCell<product, Void> cell = new TableCell<product, Void>() {
 
-                    private final Button btn = new Button();
-
-                    {
-                        ImageView btnimg = new ImageView("add-to-cart.png");
-                        btnimg.setFitWidth(30);
-                        btnimg.setFitHeight(30);
-                        btn.setGraphic(btnimg);
-
-                        btn.setOnAction((ActionEvent event) -> {
-                            product data = getTableView().getItems().get(getIndex());
-
-                            sc.addProduitPanier(data.getProduct_id(), 1, activ_user_id);
-                            refrechTableCart(activ_user_id);
-                            Double t=0.0;
-                            refrech_tot_price(t, activ_user_id);
-                        });
-                    }
-
-                    @Override
-                    public void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            setGraphic(btn);
-                        }
-                    }
-                };
-                return cell;
-            }
-        };
-
-        colBtn.setCellFactory(cellFactory);
-
-        product_table.getColumns().add(colBtn);
-        ImageView btnimgh = new ImageView("history.png");
-        btnimgh.setFitWidth(30);
-        btnimgh.setFitHeight(30);
-        orders_history_button.setGraphic(btnimgh);
-        ImageView btnch = new ImageView("check.png");
-        btnch.setFitWidth(30);
-        btnch.setFitHeight(30);
-        checkout_butt.setGraphic(btnch);
-    }
-
-    private void addButtonToTableCartDelete(int activ_user_id) {
+private void addButtonToTableCartDelete(int activ_user_id) {
         TableColumn<product, Void> colBtn1 = new TableColumn("Delete From Cart");
         services_cart sc = new services_cart();
         Callback<TableColumn<product, Void>, TableCell<product, Void>> cellFactory = new Callback<TableColumn<product, Void>, TableCell<product, Void>>() {
@@ -294,7 +266,8 @@ cart_table.setItems(cartlist);
 
     }
 
-    private void addButtonToTableCartQuantity(int activ_user_id) {
+
+private void addButtonToTableCartQuantity(int activ_user_id) {
         TableColumn<product, Void> colBtn1 = new TableColumn("+");
         services_cart sc = new services_cart();
         Callback<TableColumn<product, Void>, TableCell<product, Void>> cellFactory = new Callback<TableColumn<product, Void>, TableCell<product, Void>>() {
@@ -387,7 +360,7 @@ cart_table.setItems(cartlist);
 
     }
 
-    public void refrechTableCart(int activ_user_id) {
+     void refrechTableCart(int activ_user_id) {
         services_cart sc = new services_cart();
         cartlist.clear();
         cartlist = sc.getInitialTableData_Cart(activ_user_id);
@@ -606,6 +579,8 @@ cart_table.setItems(cartlist);
         tot_price.setText(String.valueOf(total_price));
     }
     
-    }
-
-
+    
+    
+    
+    
+}
