@@ -8,6 +8,7 @@ package gamedivision_products.services;
 import java.util.Map;
 import javafx.collections.ObservableList;
 import gamedivision_products.entities.product;
+import java.util.List;
 
 /**
  *
@@ -20,4 +21,8 @@ public interface FavouritesFunctions {
      Map<String,String> classify();
      int getiduser(String n);
      ObservableList<product> getInitialTableData(int i);
+
+    public int login(String text, String text0);
+
+    public List<String> getActiveUser();
 }

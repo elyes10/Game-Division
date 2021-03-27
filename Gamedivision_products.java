@@ -19,9 +19,10 @@ public class Gamedivision_products extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-       Parent root1 = FXMLLoader.load(getClass().getResource("home1.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("UserWindow.fxml"));
+       //Parent root1 = FXMLLoader.load(getClass().getResource("home1.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("UserWindow.fxml"));
          Parent root0 = FXMLLoader.load(getClass().getResource("login.fxml"));
+         Parent root2 = FXMLLoader.load(getClass().getResource("adminsmenu.fxml"));
         Scene scene = new Scene(root0);
         
         stage.setScene(scene);

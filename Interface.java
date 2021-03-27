@@ -27,6 +27,7 @@ public interface Interface
    List<product> sortproducts();
    Map<String,product> peak();
    Map<String,product> minimum();
+   int getteamid(String n);
 
     /**
      *

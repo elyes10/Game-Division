@@ -5,10 +5,12 @@
  */
 package gamedivision_products;
 
+import static gamedivision_products.AlertDialog.showSimpleAlert;
 import gamedivision_products.entities.product;
 import gamedivision_products.services.ProductsFunctions;
 import gamedivision_products.services.favouritefunctions;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,8 +19,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -37,6 +41,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -86,18 +91,6 @@ public class Controller implements Initializable {
     @FXML
     private VBox y;
     @FXML
-    private ImageView img1;
-    @FXML
-    private ImageView img2;
-    @FXML
-    private ImageView img3;
-    @FXML
-    private ImageView img4;
-    @FXML
-    private ImageView img5;
-    @FXML
-    private ImageView img6;
-    @FXML
     private ImageView searchicon;
     @FXML
     private Label l1;
@@ -122,22 +115,69 @@ public class Controller implements Initializable {
     @FXML
     private Button statisticsonclick1;
     @FXML
-    private ImageView img41;
-    @FXML
     private Button statisticsonclick22;
     @FXML
-    private ImageView img411;
-    @FXML
     private Button classification;
+    @FXML
+    private Button retrn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.display();
         // TODO
     }    
+private void display()
+{
+        tableview.getItems().clear();
+         c1.setCellValueFactory(new MapValueFactory<>("product_name"));
 
+//Column2 = new TableColumn<>("team_id");
+c2.setCellValueFactory(new MapValueFactory<>("team_id"));
+
+//Column3 = new TableColumn<>("price");
+c3.setCellValueFactory(new MapValueFactory<>("price"));
+
+//Column4 = new TableColumn<>("Category");
+c4.setCellValueFactory(new MapValueFactory<>("Category"));
+
+//Column5 = new TableColumn<>("Quantity");
+c5.setCellValueFactory(new MapValueFactory<>("Quantity"));
+//Column6 = new TableColumn<>("img");
+c6.setCellValueFactory(new MapValueFactory<>("img"));
+//select.setCellValueFactory(new MapValueFactory<>("select product"));
+//id.setCellValueFactory(new MapValueFactory<>("id"));
+ProductsFunctions pf=new  ProductsFunctions();
+ObservableList<product> l=pf.getInitialTableData();
+ObservableList<Map<String, Object>> items =
+    FXCollections.<Map<String, Object>>observableArrayList();
+
+for(int i=0;i<l.size();i++)
+{
+    Button b=new Button("select");
+
+    product p=new product(l.get(i).getProduct_name() ,l.get(i).getPrice(), l.get(i).getTeam_id() ,l.get(i).getCategory(), l.get(i).getQuantity(),l.get(i).getImg());
+    p.setProduct_id(l.get(i).getProduct_id());
+    Map<String, Object> item1 = new HashMap<>();
+item1.put("product_name",p.getProduct_name() );
+item1.put("team_id" , p.getTeam_id());
+item1.put("price" , p.getPrice());
+item1.put("Category" , p.getCategory());
+item1.put("Quantity" , p.getQuantity());
+item1.put("img" , p.getImageView());
+//item1.put("select product",b);
+//item1.put("id",p.getid());
+//item1.put("select product",p.getid());
+//b.setOnAction(e->this.selectitem());
+   // System.out.println(this.selectitem().get(0));
+items.add(item1);
+}
+tableview.getItems().addAll(items);
+tableview.refresh();
+
+}
     @FXML
     private void addtheproduct(ActionEvent event) {
           t1.getText();
@@ -145,13 +185,17 @@ public class Controller implements Initializable {
         t3.getText();
         t4.getText();
         t5.getText();
+        ProductsFunctions pf=new  ProductsFunctions();
         System.out.println(t1.getText()+t2.getText()+t3.getText()+t4.getText()+t5.getText());
         product p;
+        int id=pf.getteamid(t3.getText());
         double d=Double.parseDouble(t2.getText());
         int i=Integer.parseInt(t5.getText());
-   p=new product(t1.getText(),d,Integer.parseInt(t3.getText()),t4.getText(),i,this.uploadimage());
-        ProductsFunctions pf=new  ProductsFunctions();
+   p=new product(t1.getText(),d,id,t4.getText(),i,this.uploadimage());
+        
         pf.addproduct(p);
+        this.display();
+      //  showSimpleAlert("Products", "product added");
         //System.out.println("a");
     }
      private String uploadimage() {
@@ -177,18 +221,22 @@ fileChooser.showOpenDialog(primaryStage);
          
         ProductsFunctions pf=new  ProductsFunctions();
         pf.deleteproduct(p);
+        this.display();
     }
 
     @FXML
     private void updatetheproduct(ActionEvent event) {
          t1.getText();
         product p;
+                ProductsFunctions pf=new  ProductsFunctions();
+
         double d=Double.parseDouble(t2.getText());
         int i=Integer.parseInt(t5.getText());
-         p=new product(t1.getText(),d,Integer.parseInt(t3.getText()),t4.getText(),i,this.uploadimage());
+        int id=pf.getteamid(t3.getText());
+         p=new product(t1.getText(),d,id,t4.getText(),i,this.uploadimage());
          
-        ProductsFunctions pf=new  ProductsFunctions();
         pf.editproduct(p);
+        this.display();
     }
 
     @FXML
@@ -229,7 +277,7 @@ fileChooser.showOpenDialog(primaryStage);
 
     @FXML
     private void refresh(ActionEvent event) {
-        
+        tableview.getItems().clear();
          c1.setCellValueFactory(new MapValueFactory<>("product_name"));
 
 //Column2 = new TableColumn<>("team_id");
@@ -279,6 +327,64 @@ tableview.refresh();
 
     @FXML
     private void searchproduct(ActionEvent event) {
+        searchbar.getText();
+        ProductsFunctions pf=new  ProductsFunctions();
+        System.out.println(pf.searchProduct(searchbar.getText()));
+        Stage stage=new Stage();
+         StackPane root= new StackPane();
+       
+       Scene scene = new Scene(root);
+         TableView tableView = new TableView();
+
+TableColumn<Map, String> Column1 = new TableColumn<>("product_name");
+Column1.setCellValueFactory(new MapValueFactory<>("product_name"));
+
+TableColumn<Map, String> Column2 = new TableColumn<>("team_id");
+Column2.setCellValueFactory(new MapValueFactory<>("team_id"));
+
+TableColumn<Map, String> Column3 = new TableColumn<>("price");
+Column3.setCellValueFactory(new MapValueFactory<>("price"));
+
+TableColumn<Map, String> Column4 = new TableColumn<>("Category");
+Column4.setCellValueFactory(new MapValueFactory<>("Category"));
+
+TableColumn<Map, String> Column5 = new TableColumn<>("Quantity");
+Column5.setCellValueFactory(new MapValueFactory<>("Quantity"));
+TableColumn<Map, String> Column6 = new TableColumn<>("img");
+Column6.setCellValueFactory(new MapValueFactory<>("img"));
+tableView.getColumns().add(Column1);
+tableView.getColumns().add(Column2);
+tableView.getColumns().add(Column3);
+tableView.getColumns().add(Column4);
+tableView.getColumns().add(Column5);
+tableView.getColumns().add(Column6);
+
+ObservableList<product> l=pf.searchProduct(searchbar.getText());
+ObservableList<Map<String, Object>> items =
+    FXCollections.<Map<String, Object>>observableArrayList();
+for(int i=0;i<l.size();i++)
+{
+    System.out.println();
+product p=new product(l.get(i).getProduct_name() ,l.get(i).getPrice(), l.get(i).getTeam_id() 
+        ,l.get(i).getCategory(), l.get(i).getQuantity(),l.get(i).getImg());
+Map<String, Object> item1 = new HashMap<>();
+item1.put("product_name",p.getProduct_name() );
+item1.put("team_id" , p.getTeam_id());
+item1.put("price" , p.getPrice());
+item1.put("Category" , p.getCategory());
+item1.put("Quantity" , p.getQuantity());
+item1.put("img" , p.getImageView());
+items.add(item1);
+}
+
+
+
+tableView.getItems().addAll(items);
+root.getChildren().add(tableView);
+        
+        stage.setScene(scene);
+        stage.show();
+        
     }
 
     @FXML
@@ -410,15 +516,30 @@ primaryStage.setTitle("JavaFX App");
 StackPane root = new StackPane();
        // productsFunctions pf=new  productsFunctions();
         Label lb=new Label();
-        lb.setText("**** products by category****\n"+pf.classifybycategories().toString()+"\n"
+        lb.setText("**** products by category****\n"+pf.minimum().toString()+"\n"
                 
-               +"FavouriteProducts by User "+f.classify()+"\n"
-                +"***poducts by team\n***"+pf.classifybyteams().toString()+"\n"
+               //+"FavouriteProducts by User "+f.classify()+"\n"
+                +"***poducts by team\n***"+pf.peak()+"\n"
                 );
                 root.getChildren().add(lb);
-      Scene scene = new Scene(root, 800, 800);
+      Scene scene = new Scene(root, 100, 100);
        primaryStage.setScene(scene);
         primaryStage.show(); 
+    }
+
+    @FXML
+    private void returntoadminmenu(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("adminsmenu.fxml"));;
+                 
+                 Parent root = loader.load();
+              Scene scene = new Scene(root);
+        
+        // controller2.setid(f.login(t.getText(),t2.getText()));
+        
+        Stage st=new Stage();
+        st.setScene(scene);
+        st.initStyle(StageStyle.UNDECORATED);
+        st.show();
     }
     
 }

@@ -357,5 +357,62 @@ public class ProductsFunctions implements Interface {
          else
           return -1;
  }
+     public ObservableList<product> searchProduct(String n)
+    {
+       String sql="SELECT * FROM products WHERE product_name =?";
+                    List<product>l=new ArrayList();
+                    product pr=new product();
+                     ObservableList<product> data = FXCollections.observableArrayList(); 
+
+        try {
+            PreparedStatement ps = connect2Database.getInstance().getCnx().prepareStatement(sql);
+            ps.setString(1,n);
+            System.out.println("currently searching for product");
+            ResultSet res=ps.executeQuery();
+            while(res.next())
+            { 
+                pr=new product(res.getString(2),res.getDouble(4),res.getInt(3),res.getString(5)
+                       ,res.getInt(6),res.getString(7));
+               pr.setProduct_id(res.getInt(1));
+               data.add(pr);
+               
+                System.out.println(l.toString());
+            }
+            System.out.println(l.toString());
+             
+        } catch (SQLException ex) 
+        {
+            Logger.getLogger(ProductsFunctions.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error");
+        }
+      return data;
+ }
+
+    @Override
+    public int getteamid(String n) {
+      String sql="SELECT team_id FROM teams WHERE team_name =?";
+              int id=0;    
+
+        try {
+            PreparedStatement ps = connect2Database.getInstance().getCnx().prepareStatement(sql);
+            ps.setString(1,n);
+            System.out.println("currently searching for team");
+            ResultSet res=ps.executeQuery();
+            while(res.next())
+            { 
+               
+               id=res.getInt(1);
+            
+            }
+         //   System.out.println(l.toString());
+             
+        } catch (SQLException ex) 
+        {
+            Logger.getLogger(ProductsFunctions.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error");
+        }
+         return id;
+    }
+    
     
 }
