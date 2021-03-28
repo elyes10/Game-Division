@@ -1,0 +1,88 @@
+.button
+{
+-fx-background-color : #05071F;
+
+-fx-text-fill : #e7e5e5;
+}
+.button:hover{
+-fx-text-fill : #cd4e63;
+}
+.button:pressed
+{
+-fx-background-color : #4ECDC4;
+}
+* {
+    -fx-primary : #2A2E37;
+    -fx-secondary : #FFFF8D;
+    -fx-primarytext : #B2B2B2;
+    -fx-blue: #1976D2;
+    -fx-red: #FF0000;
+    -fx-color-1:#1976D2;
+}
+.y{
+  -fx-background-color : #151b27;  
+}
+
+
+
+.scroll-pane {
+    -fx-background-color:white
+    -fx-border-radius: 2em;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-radius: 2em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: transparent;
+     -fx-border-color: black;
+    -fx-border-radius: 2em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: white;
+    -fx-border-radius: 2em;
+}
+.text-field
+{
+    -fx-background-color: transparent;
+     -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+     -fx-border-color: black;
+     -fx-border-radius:2em;
+    -fx-text-fill:black;
+    -fx-font-size:12
+        
+}
+
+.table-view .table-cell{
+    -fx-text-fill: black;
+    -fx-background-color : transparent; 
+     -fx-border-radius: 2em;
+    
+}
+.table-view{
+   -fx-background-color : transparent; 
+    -fx-border-color: black;
+    -fx-border-radius: 1em;
+}
+.table-column{
+ -fx-background-color :  transparent; 
+ -fx-border-radius: 2em;
+ -fx-border-color: transparent;
+}
+

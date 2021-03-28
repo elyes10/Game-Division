@@ -12,14 +12,14 @@ package entities;
 public class cart {
 
     private int cart_id;
-    private product product;
+    private products product;
     private int quantity;
     private int user_id;
 
     public cart() {
     }
      
-    public cart(int cart_id, product product, int quantity, int user_id) {
+    public cart(int cart_id, products product, int quantity, int user_id) {
         this.cart_id = cart_id;
         this.product= product;
         this.quantity = quantity;
@@ -43,14 +43,14 @@ public class cart {
     /**
      * @return the product_id
      */
-    public product getProduct() {
+    public products getProduct() {
         return product;
     }
 
     /**
-     * @param product the product to set
+     * @param product the products to set
      */
-    public void setProduct(product product) {
+    public void setProduct(products product) {
         this.product = product;
     }
 

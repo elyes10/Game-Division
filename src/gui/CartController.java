@@ -9,7 +9,7 @@ import Services.services_cart;
 import Services.services_history_orders;
 import Services.services_orders;
 import entities.orders;
-import entities.product;
+import entities.products;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -49,15 +49,19 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Window;
 import javafx.util.Callback;
 /**
@@ -92,15 +96,15 @@ public class CartController implements Initializable {
     @FXML
     private AnchorPane tab_cart;
     @FXML
-     private TableView<product> cart_table;
+     private TableView<products> cart_table;
     @FXML
-    private TableColumn<product, String> product_name_cart;
+    private TableColumn<products, String> product_name_cart;
     @FXML
-    private TableColumn<product, ImageView> product_image_cart;
+    private TableColumn<products, ImageView> product_image_cart;
     @FXML
-    private TableColumn<product, Integer> quantity_cart;
+    private TableColumn<products, Integer> quantity_cart;
     @FXML
-    private TableColumn<product, Double> price_cart;
+    private TableColumn<products, Double> price_cart;
     @FXML
     private Button Clear_Cart;
     @FXML
@@ -113,7 +117,7 @@ public class CartController implements Initializable {
     ObservableList<orders> orders_historylist = FXCollections.observableArrayList();
     services_history_orders ho = new services_history_orders();
     services_cart s = new services_cart();
-   static ObservableList<product> cartlist = FXCollections.observableArrayList();
+   static ObservableList<products> cartlist = FXCollections.observableArrayList();
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -213,20 +217,21 @@ executor.scheduleWithFixedDelay(task, 0, 2, TimeUnit.SECONDS);
 
         orders_historylist = ho.getInitialTableData_Orders_History(activ_user_id);
 
-    
-    
-    
-    
+    ImageView checkimg=new ImageView("checkbtn.png");
+    checkout_butt.setGraphic(checkimg);
+    checkout_butt.setBackground(Background.EMPTY);
+    checkimg.setFitWidth(316);
+    checkimg.setFitHeight(40);
     }
 
 
 private void addButtonToTableCartDelete(int activ_user_id) {
-        TableColumn<product, Void> colBtn1 = new TableColumn("Delete From Cart");
+        TableColumn<products, Void> colBtn1 = new TableColumn("Delete From Cart");
         services_cart sc = new services_cart();
-        Callback<TableColumn<product, Void>, TableCell<product, Void>> cellFactory = new Callback<TableColumn<product, Void>, TableCell<product, Void>>() {
+        Callback<TableColumn<products, Void>, TableCell<products, Void>> cellFactory = new Callback<TableColumn<products, Void>, TableCell<products, Void>>() {
             @Override
-            public TableCell<product, Void> call(final TableColumn<product, Void> param) {
-                final TableCell<product, Void> cell = new TableCell<product, Void>() {
+            public TableCell<products, Void> call(final TableColumn<products, Void> param) {
+                final TableCell<products, Void> cell = new TableCell<products, Void>() {
 
                     private final Button btn1 = new Button();
 
@@ -237,7 +242,7 @@ private void addButtonToTableCartDelete(int activ_user_id) {
                         btn1.setGraphic(btnimg);
 
                         btn1.setOnAction((ActionEvent event) -> {
-                            product data = getTableView().getItems().get(getIndex());
+                            products data = getTableView().getItems().get(getIndex());
 
                             sc.delete_product_from_panier(data.getProduct_id(), activ_user_id);
                             refrechTableCart(activ_user_id);
@@ -268,12 +273,12 @@ private void addButtonToTableCartDelete(int activ_user_id) {
 
 
 private void addButtonToTableCartQuantity(int activ_user_id) {
-        TableColumn<product, Void> colBtn1 = new TableColumn("+");
+        TableColumn<products, Void> colBtn1 = new TableColumn("+");
         services_cart sc = new services_cart();
-        Callback<TableColumn<product, Void>, TableCell<product, Void>> cellFactory = new Callback<TableColumn<product, Void>, TableCell<product, Void>>() {
+        Callback<TableColumn<products, Void>, TableCell<products, Void>> cellFactory = new Callback<TableColumn<products, Void>, TableCell<products, Void>>() {
             @Override
-            public TableCell<product, Void> call(final TableColumn<product, Void> param) {
-                final TableCell<product, Void> cell = new TableCell<product, Void>() {
+            public TableCell<products, Void> call(final TableColumn<products, Void> param) {
+                final TableCell<products, Void> cell = new TableCell<products, Void>() {
 
                     private final Button btnplus = new Button();
 
@@ -284,7 +289,7 @@ private void addButtonToTableCartQuantity(int activ_user_id) {
                         btnplus.setGraphic(btnimg);
 
                         btnplus.setOnAction((ActionEvent event) -> {
-                            product data = getTableView().getItems().get(getIndex());
+                            products data = getTableView().getItems().get(getIndex());
 
                             sc.update_panier_product_quantity(activ_user_id, data.getProduct_id(), data.getQuantity() + 1);
                             refrechTableCart(activ_user_id);
@@ -314,12 +319,12 @@ private void addButtonToTableCartQuantity(int activ_user_id) {
     }
 
     private void addButtonToTableCartQuantityMinus(int activ_user_id) {
-        TableColumn<product, Void> colBtn1 = new TableColumn("-");
+        TableColumn<products, Void> colBtn1 = new TableColumn("-");
         services_cart sc = new services_cart();
-        Callback<TableColumn<product, Void>, TableCell<product, Void>> cellFactory = new Callback<TableColumn<product, Void>, TableCell<product, Void>>() {
+        Callback<TableColumn<products, Void>, TableCell<products, Void>> cellFactory = new Callback<TableColumn<products, Void>, TableCell<products, Void>>() {
             @Override
-            public TableCell<product, Void> call(final TableColumn<product, Void> param) {
-                final TableCell<product, Void> cell = new TableCell<product, Void>() {
+            public TableCell<products, Void> call(final TableColumn<products, Void> param) {
+                final TableCell<products, Void> cell = new TableCell<products, Void>() {
 
                     private final Button btnplus = new Button();
 
@@ -330,7 +335,7 @@ private void addButtonToTableCartQuantity(int activ_user_id) {
                         btnplus.setGraphic(btnimg);
 
                         btnplus.setOnAction((ActionEvent event) -> {
-                            product data = getTableView().getItems().get(getIndex());
+                            products data = getTableView().getItems().get(getIndex());
                             if (data.getQuantity() != 1) {
                                 sc.update_panier_product_quantity(activ_user_id, data.getProduct_id(), data.getQuantity() - 1);
                             }
@@ -380,8 +385,8 @@ private void addButtonToTableCartQuantity(int activ_user_id) {
     public void create_ordersHistory_Table() {
 
         Stage stage = new Stage();
-        StackPane root = new StackPane();
-
+       AnchorPane root = new AnchorPane();
+ root.setStyle("-fx-background-image: url('ordersbg.png');");
         Scene scene = new Scene(root, 1420, 620);
         TableView tableView = new TableView();
 
@@ -404,8 +409,8 @@ private void addButtonToTableCartQuantity(int activ_user_id) {
         Column6.setMinWidth(150);
 
         TableColumn<orders, String> Column7 = new TableColumn<>("Order Products");
-        Column7.setMinWidth(1000);
-
+        Column7.setMinWidth(150);
+        
         tableView.getColumns().add(Column1);
         tableView.getColumns().add(Column2);
         tableView.getColumns().add(Column3);
@@ -421,10 +426,56 @@ private void addButtonToTableCartQuantity(int activ_user_id) {
         Column5.setCellValueFactory(new PropertyValueFactory<>("total_price"));
         Column6.setCellValueFactory(new PropertyValueFactory<>("status"));
         Column7.setCellValueFactory(new PropertyValueFactory<>("liste_produit"));
-
+         //multiline table cell
+         Callback<TableColumn<orders,String>, TableCell<orders,String>> cellFactory7 = new Callback<TableColumn<orders,String>, TableCell<orders,String>>() {
+			@Override
+			public TableCell call( TableColumn param) {
+				final TableCell cell = new TableCell() {
+					private Text label;
+					@Override
+					public void updateItem(Object item, boolean empty) {
+						super.updateItem(item, empty);
+						if (!isEmpty()) {
+							label = new Text(item.toString());
+							label.setWrappingWidth(140);
+							setGraphic(label);
+						}
+					}
+				};
+				return cell;
+			}
+		};
+         //multiline end
+         
+         Column1.setCellFactory(cellFactory7);
+         Column7.setCellFactory(cellFactory7);
         tableView.setItems(orders_historylist);
-
+        tableView.setMaxHeight(350);
+        Button printbButton =new Button("");
+        printbButton.setBackground(Background.EMPTY);
+        printbButton.setPrefWidth(50);
+       ImageView print=new ImageView("print.png");
+       print.setFitWidth(50);
+       print.setFitHeight(50);
+       printbButton.setGraphic(print);
+    root.getChildren().add(printbButton);
+     printbButton.setLayoutX(1300);
+     printbButton.setLayoutY(60);
+     printbButton.setOnMouseEntered((MouseEvent me) -> {
+                           printbButton.setCursor(Cursor.HAND);
+                        });
+     services_orders ser=new services_orders();
+     printbButton.setOnAction(e->{
+            try {
+                ser.pdfs(activ_user_id);
+            } catch (Exception ex) {
+                Logger.getLogger(CartController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         root.getChildren().add(tableView);
+        tableView.setLayoutY(140);
+        tableView.setLayoutX(50);
+      
         stage.setTitle("orders history");
         stage.setScene(scene);
         stage.show();

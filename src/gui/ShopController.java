@@ -5,8 +5,10 @@
  */
 package gui;
 
+import Services.ProductsFunctions;
+import Services.favouritefunctions;
 import Services.services_cart;
-import entities.product;
+import entities.products;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -28,12 +30,14 @@ import gamedivision.FXMLDocumentController;
 import static gui.CartController.cartlist;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -44,6 +48,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 import javafx.util.Duration;
 
 /**
@@ -80,10 +85,12 @@ public class ShopController implements Initializable {
     private GridPane grid;
     
     services_cart sc = new services_cart();
-    ObservableList<product> l = FXCollections.observableArrayList();
+    ObservableList<products> l = FXCollections.observableArrayList();
     int activ_user_id = 10;
     @FXML
     private ScrollPane scrollpane;
+    @FXML
+    private Button favpagebut;
       
     /**
      * Initializes the controller class.
@@ -92,7 +99,26 @@ public class ShopController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         cbut.setOnAction((ActionEvent event) -> { try {
+            
+            ((Node)(event.getSource())).getScene().getWindow().hide();
             Parent root = FXMLLoader.load(getClass().getResource("/gui/Cart.fxml"));
+                 Scene scene = new Scene(root);
+                 
+        Stage st=new Stage();
+        st.setScene(scene);
+        st.initStyle(StageStyle.UNDECORATED);
+        st.show();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          
+          
+ });
+        
+        
+         favpagebut.setOnAction((ActionEvent event) -> { try {
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+             Parent root = FXMLLoader.load(getClass().getResource("/gui/Favsmenu.fxml"));
                  Scene scene = new Scene(root);
                  
         Stage st=new Stage();
@@ -178,12 +204,7 @@ public class ShopController implements Initializable {
                            favButton.setCursor(Cursor.HAND);
                         });
                         
-                        favButton.setOnAction((ActionEvent event) -> {
-                          
-                     
-                           
-                          //favorie code
-                        });
+                       favButton.setOnAction(e->this.selectItem(lb.getText()));
                     }
               
             
@@ -214,6 +235,22 @@ h1.setSpacing(15);
         
     }
     
-    
+     private void selectItem(String n) {
+        int x=3;
+            System.out.println(n);
+           // System.out.print(t.getText()+t2.getText());
+            favouritefunctions f=new favouritefunctions();
+           // int x=f.getiduser(t.getText());
+            
+            ProductsFunctions p=new ProductsFunctions();
+            p.searchProductId(n);
+            System.out.println(x+"    "+p.searchProductId(n));
+            if(f.SearchingFavourites(x,p.searchProductId(n))==-1)
+            {f.AddproducttoFavourites(x,p.searchProductId(n));
+           
+            }
+   
+     
+    }
 
 }

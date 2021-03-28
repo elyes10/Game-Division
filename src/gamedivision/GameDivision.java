@@ -22,8 +22,9 @@ import Services.services_history_orders;
 public class GameDivision extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
-      Parent root = FXMLLoader.load(getClass().getResource("/gui/Shop.fxml"));
+    public  void start(Stage stage) throws Exception {
+        
+      Parent root = FXMLLoader.load(getClass().getResource("/gui/Orders_admin.fxml"));
       //   Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Game Division");

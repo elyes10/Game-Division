@@ -6,7 +6,7 @@
 package Services;
 
 import entities.connecttoDb;
-import entities.product;
+import entities.products;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -104,9 +104,9 @@ public class services_cart {
      *
      * @return
      */
-    public ObservableList<product> getInitialTableData() {
+    public ObservableList<products> getInitialTableData() {
         String sql = "SELECT * FROM products";
-        ObservableList<product> data = FXCollections.observableArrayList();
+        ObservableList<products> data = FXCollections.observableArrayList();
         try {
             PreparedStatement s = connecttoDb.getInstance().getCnx().prepareStatement(sql);
             s.executeQuery(sql);
@@ -117,7 +117,7 @@ public class services_cart {
                 ImageView imgView = new ImageView(imgg);
                 imgView.setFitWidth(200);
                 imgView.setFitHeight(200);
-                product p = new product(res.getInt(1), res.getString(2), res.getInt(3), res.getDouble(4), res.getString(5), res.getInt(6), res.getString(7));
+                products p = new products(res.getInt(1), res.getString(2), res.getInt(3), res.getDouble(4), res.getString(5), res.getInt(6), res.getString(7));
                 p.setImagev(imgView);
                 data.add(p);
             }
@@ -128,9 +128,9 @@ public class services_cart {
         return data;
     }
 
-    public ObservableList<product> getInitialTableData_Cart(int user_id) {
+    public ObservableList<products> getInitialTableData_Cart(int user_id) {
         String sql = "SELECT products.product_name, products.img, products.price, cart.quantite, cart.product_id FROM products INNER JOIN cart ON products.product_id=cart.product_id WHERE cart.user_id = '" + user_id + "'";
-        ObservableList<product> data = FXCollections.observableArrayList();
+        ObservableList<products> data = FXCollections.observableArrayList();
         try {
             PreparedStatement s = connecttoDb.getInstance().getCnx().prepareStatement(sql);
             s.executeQuery(sql);
@@ -141,7 +141,7 @@ public class services_cart {
                 ImageView imgView = new ImageView(imgg);
                 imgView.setFitWidth(200);
                 imgView.setFitHeight(200);
-                product p = new product(res.getInt(5), res.getString(1), 1, res.getDouble(3), "categorie", res.getInt(4), res.getString(2));
+                products p = new products(res.getInt(5), res.getString(1), 1, res.getDouble(3), "categorie", res.getInt(4), res.getString(2));
                 p.setImagev(imgView);
                 data.add(p);
             }
