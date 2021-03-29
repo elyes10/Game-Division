@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1206.0" style="-fx-background-color: #232930;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamedevision.GUI_Front_TournamentsController">
+   <children>
+      <AnchorPane layoutX="187.0" layoutY="48.0" prefHeight="670.0" prefWidth="1011.0" style="-fx-background-color: white;">
+         <children>
+            <Button fx:id="btn_tr_local" layoutY="-6.0" mnemonicParsing="false" prefHeight="338.0" prefWidth="1014.0" />
+            <Button fx:id="btn_tr_inter" layoutY="332.0" mnemonicParsing="false" prefHeight="338.0" prefWidth="1014.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="-2.0" prefHeight="58.0" prefWidth="1206.0" style="-fx-background-color: #232930;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="exbut" alignment="TOP_RIGHT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="1160.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #232930;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children></AnchorPane>
+      <AnchorPane fx:id="pane_slide" layoutY="-4.0" prefHeight="720.0" prefWidth="182.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.topAnchor="1.0">
+         <children>
+            <Button fx:id="menu_button" mnemonicParsing="false" style="-fx-background-color: #232930;" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <VBox fx:id="vb" layoutX="47.0" layoutY="101.0" prefHeight="310.0" prefWidth="134.0" style="-fx-background-color: #232930;" AnchorPane.bottomAnchor="304.0" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="101.0">
+               <children>
+                  <Button fx:id="hbut" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #232930;" text="Home">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.9921568632125854" green="0.1921568661928177" blue="0.1921568661928177" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.9961832061068702">
+                                 <color>
+                                    <Color red="0.8039215803146362" green="0.1411764770746231" blue="0.1411764770746231" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.8039215803146362" green="0.1411764770746231" blue="0.1411764770746231" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="gbut" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #232930;" text="Games">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.99210524559021" green="0.1929093599319458" blue="0.1929093599319458" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.9961832061068702">
+                                 <color>
+                                    <Color red="0.8039215803146362" green="0.1411764770746231" blue="0.1411764770746231" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.8039215803146362" green="0.1411764770746231" blue="0.1411764770746231" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="tbut" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: #232930;" text="Tournaments">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.99210524559021" green="0.1929093599319458" blue="0.1929093599319458" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.9961832061068702">
+                                 <color>
+                                    <Color red="0.8039215803146362" green="0.1411764770746231" blue="0.1411764770746231" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.8039215803146362" green="0.1411764770746231" blue="0.1411764770746231" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="teambut" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #232930;" text="Teams">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.99210524559021" green="0.1929093599319458" blue="0.1929093599319458" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.9961832061068702">
+                                 <color>
+                                    <Color red="0.8039215803146362" green="0.1411764770746231" blue="0.1411764770746231" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.8039215803146362" green="0.1411764770746231" blue="0.1411764770746231" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="stbut" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="38.0" prefWidth="124.0" style="-fx-background-color: #232930;" text="Store">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.99210524559021" green="0.1929093599319458" blue="0.1929093599319458" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.9961832061068702">
+                                 <color>
+                                    <Color red="0.8039215803146362" green="0.1411764770746231" blue="0.1411764770746231" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.8039215803146362" green="0.1411764770746231" blue="0.1411764770746231" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="cbut" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #232930;" text="Cart">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.99210524559021" green="0.1929093599319458" blue="0.1929093599319458" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.9961832061068702">
+                                 <color>
+                                    <Color red="0.8039215803146362" green="0.1411764770746231" blue="0.1411764770746231" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.8039215803146362" green="0.1411764770746231" blue="0.1411764770746231" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="80.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="TOP_CENTER" layoutX="-7.0" layoutY="101.0" prefHeight="249.0" prefWidth="68.0" style="-fx-background-color: #232930;" AnchorPane.leftAnchor="-7.0" AnchorPane.topAnchor="101.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/img10.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="42.0" fitWidth="32.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../Images/img2.jpg" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/img1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/img4.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="46.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/img6.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="60.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/img9.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets top="80.0" />
+               </padding>
+            </VBox>
+            <ImageView fitHeight="137.0" fitWidth="134.0" layoutX="27.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/img5.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
