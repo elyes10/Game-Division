@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="541.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamedevision.GUI_GamesController">
+   <children>
+      <TextField fx:id="Game_name" layoutX="157.0" layoutY="213.0" />
+      <TextField fx:id="Game_cover" layoutX="157.0" layoutY="277.0" />
+      <TextField fx:id="Description" layoutX="157.0" layoutY="341.0" />
+      <Label layoutX="31.0" layoutY="217.0" text="Name" />
+      <Label layoutX="31.0" layoutY="284.0" text="Cover" />
+      <Label layoutX="30.0" layoutY="358.0" text="Description" />
+      <Button fx:id="addbtn" layoutX="91.0" layoutY="412.0" mnemonicParsing="false" onAction="#AddGames" text="Add Game" />
+      <Label layoutX="401.0" layoutY="14.0" text="Games" textAlignment="CENTER">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="154.0" text="ID" />
+      <TextField fx:id="Game_id" layoutX="157.0" layoutY="154.0" />
+      <Button fx:id="deletebtn" layoutX="180.0" layoutY="412.0" mnemonicParsing="false" onAction="#DeleteGames" text="Delete Game" />
+      <Button fx:id="showbtn" layoutX="540.0" layoutY="412.0" mnemonicParsing="false" onAction="#AfficherGames" text="Show Games" />
+      <Button fx:id="updatebtn" layoutX="289.0" layoutY="412.0" mnemonicParsing="false" onAction="#UpdateGames" text="UpdateGames" />
+      <TableView fx:id="tableview" layoutX="323.0" layoutY="153.0" prefHeight="214.0" prefWidth="502.0">
+        <columns>
+          <TableColumn fx:id="tb_id" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="tb_name" prefWidth="131.0" text="Game name" />
+            <TableColumn fx:id="tb_cover" prefWidth="104.0" text="Game cover" />
+            <TableColumn fx:id="tb_desc" prefWidth="191.0" text="Description" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
