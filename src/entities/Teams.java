@@ -5,48 +5,114 @@
  */
 package entities;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author iyadh
  */
 public class Teams {
-            private int team_id;
-             private String  team_name;
-             private String team_logo;
-           private String Team_Website;
-            private int user1_id;
-           private int  user2_id;
-          private int  user3_id;
-            private int user4_id;
-           private int user5_id;
+
+    /**
+     * @param team_id the team_id to set
+     */
+    public void setTeam_id(SimpleIntegerProperty team_id) {
+        this.team_id = team_id;
+    }
+
+    /**
+     * @param team_name the team_name to set
+     */
+    public void setTeam_name(SimpleStringProperty team_name) {
+        this.team_name = team_name;
+    }
+
+    /**
+     * @param team_logo the team_logo to set
+     */
+    public void setTeam_logo(SimpleStringProperty team_logo) {
+        this.team_logo = team_logo;
+    }
+
+    /**
+     * @param Team_Website the Team_Website to set
+     */
+    public void setTeam_Website(SimpleStringProperty Team_Website) {
+        this.Team_Website = Team_Website;
+    }
+
+    /**
+     * @param user1_id the user1_id to set
+     */
+    public void setUser1_id(SimpleIntegerProperty user1_id) {
+        this.user1_id = user1_id;
+    }
+
+    /**
+     * @param user2_id the user2_id to set
+     */
+    public void setUser2_id(SimpleIntegerProperty user2_id) {
+        this.user2_id = user2_id;
+    }
+
+    /**
+     * @param user3_id the user3_id to set
+     */
+    public void setUser3_id(SimpleIntegerProperty user3_id) {
+        this.user3_id = user3_id;
+    }
+
+    /**
+     * @param user4_id the user4_id to set
+     */
+    public void setUser4_id(SimpleIntegerProperty user4_id) {
+        this.user4_id = user4_id;
+    }
+
+    /**
+     * @param user5_id the user5_id to set
+     */
+    public void setUser5_id(SimpleIntegerProperty user5_id) {
+        this.user5_id = user5_id;
+    }
+            private SimpleIntegerProperty team_id;
+             private SimpleStringProperty  team_name;
+             private SimpleStringProperty team_logo;
+           private SimpleStringProperty Team_Website;
+            private SimpleIntegerProperty user1_id;
+           private SimpleIntegerProperty  user2_id;
+          private SimpleIntegerProperty  user3_id;
+            private SimpleIntegerProperty user4_id;
+           private SimpleIntegerProperty user5_id;
 
     public Teams() {
     }
 
     public Teams(int team_id, String team_name, String team_logo, String Team_Website, int user1_id, int user2_id, int user3_id, int user4_id, int user5_id) {
-        this.team_id = team_id;
-        this.team_name = team_name;
-        this.team_logo = team_logo;
-        this.Team_Website = Team_Website;
-        this.user1_id = user1_id;
-        this.user2_id = user2_id;
-        this.user3_id = user3_id;
-        this.user4_id = user4_id;
-        this.user5_id = user5_id;
+        this.team_id = new SimpleIntegerProperty(team_id);
+        this.team_name = new SimpleStringProperty(team_name);
+        this.team_logo = new SimpleStringProperty(team_logo);
+        this.Team_Website = new SimpleStringProperty(Team_Website);
+        this.user1_id = new SimpleIntegerProperty(user1_id);
+        this.user2_id = new SimpleIntegerProperty(user2_id);
+        this.user3_id = new SimpleIntegerProperty(user3_id);
+        this.user4_id = new SimpleIntegerProperty(user4_id);
+        this.user5_id = new SimpleIntegerProperty(user5_id);
     }
 
     public Teams(String team_name, String team_logo, String Team_Website, int user1_id, int user2_id, int user3_id, int user4_id, int user5_id) {
-        this.team_name = team_name;
-        this.team_logo = team_logo;
-        this.Team_Website = Team_Website;
-        this.user1_id = user1_id;
-        this.user2_id = user2_id;
-        this.user3_id = user3_id;
-        this.user4_id = user4_id;
-        this.user5_id = user5_id;
+       this.team_name = new SimpleStringProperty(team_name);
+        this.team_logo = new SimpleStringProperty(team_logo);
+        this.Team_Website = new SimpleStringProperty(Team_Website);
+        this.user1_id = new SimpleIntegerProperty(user1_id);
+        this.user2_id = new SimpleIntegerProperty(user2_id);
+        this.user3_id = new SimpleIntegerProperty(user3_id);
+        this.user4_id = new SimpleIntegerProperty(user4_id);
+        this.user5_id = new SimpleIntegerProperty(user5_id);
     }
 
-    public int getTeam_id() {
+  /*  public int getTeam_id() {
         return team_id;
     }
 
@@ -123,6 +189,42 @@ public class Teams {
         return "Teams{" + "team_id=" + team_id + ", team_name=" + team_name + ", team_logo=" + team_logo + ", Team_Website=" + Team_Website + ", user1_id=" + user1_id + ", user2_id=" + user2_id + ", user3_id=" + user3_id + ", user4_id=" + user4_id + ", user5_id=" + user5_id + '}';
     }
            
-           
+   */        
+
+    public int getTeam_id() {
+        return team_id.get();
+    }
+
+    public String getTeam_name() {
+        return team_name.get();
+    }
+
+    public String getTeam_logo() {
+        return team_logo.get();
+    }
+
+    public String getTeam_Website() {
+        return Team_Website.get();
+    }
+
+    public int getUser1_id() {
+        return user1_id.get();
+    }
+
+    public int getUser2_id() {
+        return user2_id.get();
+    }
+
+    public int getUser3_id() {
+        return user3_id.get();
+    }
+
+    public int getUser4_id() {
+        return user4_id.get();
+    }
+
+    public int getUser5_id() {
+        return user5_id.get();
+    }
            
 }

@@ -5,9 +5,9 @@
  */
 package Services;
 
-import Entities.Games;
-import Entities.Tournaments;
-import Entities.Tournaments_intr;
+import entities.Games;
+import entities.Tournaments;
+import entities.Tournaments_intr;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,13 +24,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import utils.connecttoDb;
+import entities.connecttoDb;
 
 /**
  *
  * @author farou
  */
-public class ServicesTournaments_intr implements IServices.IServicesTournaments_intr{
+public class ServicesTournaments_intr implements Services.IServicesTournaments_intr{
       Connection cnx;
    public ServicesTournaments_intr(){
    cnx=connecttoDb.getInstance().getCnx();

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="image" prefHeight="448.0" prefWidth="796.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AddTeamController">
+   <children>
+      <ImageView fitHeight="497.0" fitWidth="796.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../bg3.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="Tname" layoutX="217.0" layoutY="96.0" promptText="Team Name" />
+      <TextField fx:id="Twebsite" layoutX="415.0" layoutY="96.0" promptText="Team Website" />
+      <TextField fx:id="one" layoutX="323.0" layoutY="138.0" promptText="Player one" />
+      <TextField fx:id="tow" layoutX="323.0" layoutY="177.0" promptText="Player Tow" />
+      <TextField fx:id="three" layoutX="323.0" layoutY="216.0" promptText="Player Three" />
+      <TextField fx:id="four" layoutX="323.0" layoutY="254.0" promptText="Player four" />
+      <TextField fx:id="five" layoutX="323.0" layoutY="296.0" promptText="Player Five" />
+      <Text fill="WHITE" layoutX="14.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Team : " wrappingWidth="286.6708984375">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Text>
+      <Pane layoutX="11.0" layoutY="69.0" prefHeight="10.0" prefWidth="773.0" style="-fx-background-color: white;" />
+      <Button fx:id="logo" layoutX="329.0" layoutY="345.0" mnemonicParsing="false" onAction="#upload" prefHeight="26.0" prefWidth="135.0" text="Upload Logo" />
+      <Button layoutX="623.0" layoutY="387.0" mnemonicParsing="false" onAction="#ok" prefHeight="33.0" prefWidth="142.0" text="ADDTEAM" />
+   </children>
+</AnchorPane>

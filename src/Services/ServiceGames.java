@@ -5,8 +5,8 @@
  */
 package Services;
 
-import IServices.IServiceGames;
-import Entities.Games;
+import Services.IServiceGames;
+import entities.Games;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +21,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import utils.connecttoDb;
+import entities.connecttoDb;
 
 /**
  *

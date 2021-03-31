@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package Services;
-import Entities.Games;
-import Entities.Tournaments;
-import IServices.IServicesTournaments;
+import entities.Games;
+import entities.Tournaments;
+import Services.IServicesTournaments;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import utils.connecttoDb;
+import entities.connecttoDb;
 
 /**
  *

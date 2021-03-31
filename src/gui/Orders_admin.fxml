@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="1169.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Orders_adminController">
+   <children>
+      <ImageView fitHeight="657.0" fitWidth="1341.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../bg3.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="48.0" layoutY="32.0" prefHeight="50.0" prefWidth="382.0" text="Orders management" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <TableView id="table" fx:id="tableview" layoutX="31.0" layoutY="125.0" prefHeight="410.0" prefWidth="1130.0" style="-fx-background-color: transparent;">
+        <columns>
+          <TableColumn fx:id="c1" minWidth="0.0" prefWidth="115.99999690055847" style="-fx-border-radius: 2em;" text="Order id" />
+          <TableColumn fx:id="c2" prefWidth="65.5999755859375" style="-fx-background-color: transparent;" text="User id" />
+            <TableColumn fx:id="c3" prefWidth="92.80009460449219" style="-fx-background-color: transparent;" text="Adress" />
+            <TableColumn fx:id="c4" prefWidth="87.4666748046875" style="-fx-background-color: transparent;" text="Country" />
+            <TableColumn fx:id="c5" prefWidth="168.0" style="-fx-background-color: transparent;" text="Date" />
+            <TableColumn fx:id="c6" prefWidth="156.0" style="-fx-background-color: transparent; -fx-border-radius: 2em;" text="Total price" />
+            <TableColumn fx:id="c61" prefWidth="111.2000732421875" style="-fx-background-color: transparent; -fx-border-radius: 2em;" text="Status" />
+            <TableColumn fx:id="c62" prefWidth="175.7332763671875" style="-fx-background-color: transparent; -fx-border-radius: 2em;" text="Products list" />
+        </columns>
+      </TableView>
+   </children>
+   <effect>
+      <DropShadow color="#1b1eeb" />
+   </effect>
+</AnchorPane>

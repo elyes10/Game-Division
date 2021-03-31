@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package entities;
+  
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -11,6 +13,7 @@ package Entities;
  */
         public class Games {
 
+      private ImageView imageView;
 
             private int game_id;
             private String game_name;
@@ -20,6 +23,19 @@ package Entities;
         public Games() {
 
         }
+         public ImageView getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
+    }
+    
+    
+    
+    
+    
+    
 
     public Games(int game_id, String game_name, String game_cover, String description) {
         this.game_id = game_id;
