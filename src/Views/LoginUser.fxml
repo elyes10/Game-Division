@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Views.LoginUserController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.LoginUserController">
    <children>
       <TextField fx:id="tfemail" layoutX="223.0" layoutY="129.0" />
       <Text layoutX="107.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" wrappingWidth="109.78466796875" />
       <Text layoutX="95.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" wrappingWidth="94.6708984375" />
-      <Button fx:id="loginbtn" layoutX="284.0" layoutY="270.0" mnemonicParsing="false" onAction="#loginAction" text="login" />
+      <Button fx:id="loginbtn" layoutX="231.0" layoutY="266.0" mnemonicParsing="false" onAction="#loginAction" text="login" />
       <Button fx:id="signupbtn" layoutX="277.0" layoutY="327.0" mnemonicParsing="false" onAction="#SignUp" text="SignUp" />
       <PasswordField fx:id="tfpwd" layoutX="223.0" layoutY="200.0" />
+      <Button fx:id="fgp" layoutX="335.0" layoutY="266.0" mnemonicParsing="false" onAction="#send_mail" text="Forgot Password?" />
    </children>
 </AnchorPane>

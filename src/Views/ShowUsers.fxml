@@ -23,7 +23,7 @@
             <TableColumn fx:id="gender" prefWidth="83.0" style="-fx-alignment: center;" text="Gender" />
         </columns>
       </TableView>
-      <Button fx:id="delbtn" layoutX="770.0" layoutY="202.0" mnemonicParsing="false" onAction="#deletbtn" prefHeight="51.0" prefWidth="116.0" style="-fx-background-color: #0000CD;" text="Delete" textFill="LIGHTGRAY">
+      <Button fx:id="delbtn" layoutX="770.0" layoutY="272.0" mnemonicParsing="false" onAction="#deletbtn" prefHeight="51.0" prefWidth="116.0" style="-fx-background-color: #0000CD;" text="Delete" textFill="LIGHTGRAY">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="21.0" />
          </font></Button>
@@ -49,5 +49,6 @@
             </AnchorPane>
       </content>
     </TitledPane>
+      <Button layoutX="796.0" layoutY="169.0" mnemonicParsing="false" onAction="#printusers" text="Print" />
    </children>
 </AnchorPane>

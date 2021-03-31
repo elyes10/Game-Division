@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,6 +32,20 @@ public class servicesTeam {
            st = c.createStatement();
            String rec = " INSERT INTO `teams`(`team_id`, `team_name`, `team_logo`, `Team_Website`, `user1_id`, `user2_id`, `user3_id`, `user4_id`, `user5_id`) "
                    + "      VALUES ('"+t.getTeam_id()+"','"+t.getTeam_name()+"','"+t.getTeam_logo()+"','"+t.getTeam_Website()+"','"+t.getUser1_id()+"','"+t.getUser2_id()+"','"+t.getUser3_id()+"','"+t.getUser4_id()+"','"+t.getUser5_id()+"')";
+           st.executeUpdate(rec);
+            System.err.println("add successful");
+        } catch (SQLException ex) {
+            Logger.getLogger(servicesTeam.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    public void addteam1(Teams t ) throws SQLException{
+        Statement st;
+        try {
+           st = c.createStatement();
+           String rec = " INSERT INTO `teams`(`team_name`, `team_logo`, `Team_Website`, `user1_id`, `user2_id`, `user3_id`, `user4_id`, `user5_id`) "
+                   + "      VALUES ('"+t.getTeam_name()+"','"+t.getTeam_logo()+"','"+t.getTeam_Website()+"','"+t.getUser1_id()+"','"+t.getUser2_id()+"','"+t.getUser3_id()+"','"+t.getUser4_id()+"','"+t.getUser5_id()+"')";
            st.executeUpdate(rec);
             System.err.println("add successful");
         } catch (SQLException ex) {
@@ -92,7 +108,25 @@ public void deleteTeams(Teams t) {
         }
 
     }
-   
+
+    public List<Teams> getAll(){
+    List<Teams> us = new ArrayList<>();
+        PreparedStatement p;
+        try {
+        p = c.prepareStatement("select * from teams");
+        ResultSet rs = p.executeQuery();
+        while (rs.next()){
+         //Teams u = new Teams(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8));
+         Teams u = new Teams(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getInt(9));
+         us.add(u);
+            System.out.println("success");
+            
+        }    } catch (SQLException ex) {
+            Logger.getLogger(servicesUser.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+    return us;
+    }
+    
 
     
     }
