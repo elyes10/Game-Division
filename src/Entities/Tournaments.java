@@ -5,55 +5,21 @@
  */
 package Entities;
 
-import javafx.scene.image.ImageView;
-
 /**
  *
  * @author farou
  */
 public class Tournaments {
-            private ImageView imageView;
-
-    public ImageView getImageView() {
-        return imageView;
-    }
-
-    public void setImageView(ImageView imageView) {
-        
-        this.imageView = imageView;
-    }       private int Game_id; 
-
-    public int getGame_id() {
-        return Game_id;
-    }
-
-    public void setGame_id(int Game_id) {
-        this.Game_id = Game_id;
-    }       private String team_name;
-
-    public String getTeam_name() {
-        return team_name;
-    }
-
-    public void setTeam_name(String team_name) {
-        this.team_name = team_name;
-    }
             private int tr_id;
             private String tr_cover;
-            private Games games;
-            private int team1_id;
-            private int team2_id;
-            private int team3_id;
-            private int team4_id;
+            private int game_id;
+            private int team_id;
 
-    public Tournaments(int tr_id, String tr_cover, int Game_id, int team1_id, int team2_id, int team3_id, int team4_id) {
+    public Tournaments(int tr_id, String tr_cover, int game_id, int team_id) {
         this.tr_id = tr_id;
         this.tr_cover = tr_cover;
-        this.Game_id = Game_id;
-        this.team1_id = team1_id;
-        this.team2_id = team2_id;
-        this.team3_id = team3_id;
-        this.team4_id = team4_id;
+        this.game_id = game_id;
+        this.team_id = team_id;
     }
 
     public Tournaments() {
@@ -75,51 +41,26 @@ public class Tournaments {
         this.tr_cover = tr_cover;
     }
 
-    public  Games getGames() {
-        return games;
+    public int getGame_id() {
+        return game_id;
     }
 
-    public void setGames(Games games) {
-        this.games = games;
+    public void setGame_id(int game_id) {
+        this.game_id = game_id;
     }
 
-    public int getTeam1_id() {
-        return team1_id;
+    public int getTeam_id() {
+        return team_id;
     }
 
-    public void setTeam1_id(int team1_id) {
-        this.team1_id = team1_id;
-    }
-
-    public int getTeam2_id() {
-        return team2_id;
-    }
-
-    public void setTeam2_id(int team2_id) {
-        this.team2_id = team2_id;
-    }
-
-    public int getTeam3_id() {
-        return team3_id;
-    }
-
-    public void setTeam3_id(int team3_id) {
-        this.team3_id = team3_id;
-    }
-
-    public int getTeam4_id() {
-        return team4_id;
-    }
-
-    public void setTeam4_id(int team4_id) {
-        this.team4_id = team4_id;
+    public void setTeam_id(int team_id) {
+        this.team_id = team_id;
     }
 
     @Override
     public String toString() {
-        return "Tournaments{" + "tr_id=" + tr_id + ", tr_cover=" + tr_cover + ", game_id=" + games + ", team1_id=" + team1_id + ", team2_id=" + team2_id + ", team3_id=" + team3_id + ", team4_id=" + team4_id + '}';
+        return "Tournaments{" + "tr_id=" + tr_id + ", tr_cover=" + tr_cover + ", game_id=" + game_id + ", team_id=" + team_id + '}';
     }
 
- 
     
 }
